@@ -1,0 +1,25 @@
+[package]
+name = "ui-dioxus"
+version = "0.1.0"
+authors = ["dynamder <igaster@163.com>"]
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+dioxus = { version = "0.7.10", default-features = false, features = [
+    "router",
+    "lib",
+    "launch",
+    "logger",
+] }
+
+[features]
+default = ["native"]
+# Blitz-based native renderer (wgpu + winit), no WebView2.
+native = ["dioxus/native"]
+# Browser build.
+web = ["dioxus/web"]
+# Legacy WebView2 desktop renderer (kept for comparison; currently broken with wry 0.53).
+desktop = ["dioxus/desktop"]
+mobile = ["dioxus/mobile"]

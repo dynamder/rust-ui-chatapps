@@ -2,8 +2,8 @@
 name = "ui-iced"
 version.workspace = true
 edition.workspace = true
-rust-version.workspace = true
+rust-version = "1.88"
 license.workspace = true
 
 [dependencies]
-iced = "0.13.1"
+iced = "0.14.0"

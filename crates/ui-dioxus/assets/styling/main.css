@@ -1,0 +1,71 @@
+/* App shell — colours come from rose-pine-moon.css. */
+
+#hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  margin: 0;
+  padding: var(--space-12) var(--space-6);
+}
+
+#header {
+  width: min(720px, 100%);
+  height: auto;
+}
+
+#hero-title {
+  text-align: center;
+}
+
+#hero-title h1 {
+  margin: 0 0 var(--space-2);
+}
+
+#hero-title p {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+#links {
+  display: flex;
+  width: min(420px, 100%);
+  flex-direction: column;
+  gap: var(--space-2);
+  color: var(--color-text);
+  font-size: var(--text-md);
+  text-align: left;
+}
+
+#links a {
+  display: block;
+  padding: var(--space-3) var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  color: var(--color-text-muted);
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+#links a:hover {
+  border-color: var(--color-accent);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+#links a:active {
+  background: var(--color-surface-active);
+  transform: translateY(0);
+}

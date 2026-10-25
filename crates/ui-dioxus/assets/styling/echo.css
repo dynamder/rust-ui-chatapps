@@ -1,0 +1,51 @@
+#echo {
+  width: min(360px, calc(100% - var(--space-8)));
+  margin: var(--space-12) auto;
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+#echo > h4 {
+  margin: 0 0 var(--space-4);
+  color: var(--color-text);
+}
+
+#echo > input {
+  display: block;
+  width: 100%;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  background: var(--color-bg);
+  color: var(--color-text);
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+#echo > input::placeholder {
+  color: var(--color-text-faint);
+}
+
+#echo > input:hover {
+  border-color: var(--color-border-strong);
+}
+
+#echo > input:focus {
+  border-color: var(--color-accent);
+  box-shadow: var(--shadow-focus);
+}
+
+#echo > p {
+  margin: var(--space-4) 0 0;
+  color: var(--color-text-muted);
+}
+
+#echo > p i {
+  color: var(--color-accent);
+  font-style: normal;
+}

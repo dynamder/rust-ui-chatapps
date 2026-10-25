@@ -1,6 +1,6 @@
 [workspace]
 resolver = "3"
-members = ["crates/chat-core", "crates/chat-server", "crates/ui-iced"]
+members = ["crates/chat-core", "crates/chat-server", "crates/ui-iced", 'crates\ui-dioxus']
 
 [workspace.package]
 version = "0.1.0"

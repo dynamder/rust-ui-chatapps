@@ -1,0 +1,724 @@
+/* ==========================================================================
+   Rosé Pine Moon — shared design tokens & base styles
+   Palette source: https://rosepinetheme.com/palette/ (Moon column)
+
+   This file is the single CSS entry point for the theme. Every colour used
+   by the app should come from one of the semantic tokens below, never from a
+   hard-coded hex value in a component stylesheet.
+
+   The Rust counterpart lives in `crates/ui-iced/src/theme.rs` and mirrors the
+   same role names (BASE, SURFACE, OVERLAY, ...). Keep both files in sync.
+   ========================================================================== */
+
+:root {
+  color-scheme: dark;
+
+  /* ---------------------------------------------------------------------
+     Palette — Rosé Pine Moon (exact values from the official palette)
+     --------------------------------------------------------------------- */
+  --rp-base: #232136;          /* page background                         */
+  --rp-surface: #2a273f;       /* panels, cards, inputs                   */
+  --rp-overlay: #393552;       /* raised surfaces, hovered panels         */
+  --rp-muted: #6e6a86;         /* faint text, timestamps, placeholders    */
+  --rp-subtle: #908caa;        /* secondary text, icons                   */
+  --rp-text: #e0def4;          /* primary text                            */
+  --rp-love: #eb6f92;          /* danger / errors                         */
+  --rp-gold: #f6c177;          /* warning / attention                     */
+  --rp-rose: #ea9a97;          /* secondary accent                        */
+  --rp-pine: #3e8fb0;          /* success / confirmation                  */
+  --rp-foam: #9ccfd8;          /* info / links on hover                   */
+  --rp-iris: #c4a7e7;          /* primary accent, links, focus            */
+  --rp-highlight-low: #2a283e; /* subtle hover / shading                  */
+  --rp-highlight-med: #44415a; /* borders, active surfaces                */
+  --rp-highlight-high: #56526e;/* strong borders, scrollbar thumb         */
+
+  /* ---------------------------------------------------------------------
+     Semantic colours — map UI meaning onto the palette
+     --------------------------------------------------------------------- */
+  --color-bg: var(--rp-base);
+  --color-surface: var(--rp-surface);
+  --color-surface-raised: var(--rp-overlay);
+  --color-surface-hover: var(--rp-highlight-low);
+  --color-surface-active: var(--rp-highlight-med);
+
+  --color-border-subtle: var(--rp-highlight-low);
+  --color-border: var(--rp-highlight-med);
+  --color-border-strong: var(--rp-highlight-high);
+
+  --color-text: var(--rp-text);
+  --color-text-muted: var(--rp-subtle);
+  --color-text-faint: var(--rp-muted);
+  --color-text-disabled: var(--rp-muted);
+
+  --color-accent: var(--rp-iris);
+  --color-accent-hover: #ac93cc;    /* iris mixed 15% toward base          */
+  --color-accent-active: #947fb2;   /* iris mixed 30% toward base          */
+  --color-accent-soft: rgb(196 167 231 / 0.14);
+  --color-accent-soft-hover: rgb(196 167 231 / 0.22);
+  --color-on-accent: var(--rp-base);
+
+  --color-secondary: var(--rp-rose);
+  --color-success: var(--rp-pine);
+  --color-success-soft: rgb(62 143 176 / 0.16);
+  --color-warning: var(--rp-gold);
+  --color-warning-soft: rgb(246 193 119 / 0.16);
+  --color-danger: var(--rp-love);
+  --color-danger-hover: #cd6384;    /* love mixed 15% toward base          */
+  --color-danger-active: #af5876;   /* love mixed 30% toward base          */
+  --color-danger-soft: rgb(235 111 146 / 0.16);
+  --color-on-danger: var(--rp-base);
+  --color-info: var(--rp-foam);
+  --color-info-soft: rgb(156 207 216 / 0.16);
+
+  --color-link: var(--rp-iris);
+  --color-link-hover: var(--rp-foam);
+
+  --color-focus: var(--rp-iris);
+  --color-focus-ring: rgb(196 167 231 / 0.45);
+  --color-selection-bg: rgb(196 167 231 / 0.28);
+  --color-backdrop: rgb(19 17 32 / 0.72);
+  --color-shadow: rgb(10 8 20 / 0.45);
+
+  /* ---------------------------------------------------------------------
+     Chat layout tokens
+     --------------------------------------------------------------------- */
+  --chat-sidebar-width: 264px;
+  --chat-sidebar-bg: var(--rp-surface);
+  --chat-main-bg: var(--rp-base);
+  --chat-header-bg: var(--rp-base);
+  --chat-composer-bg: var(--rp-surface);
+  --chat-bubble-radius: 16px;
+  --chat-bubble-incoming-bg: var(--rp-surface);
+  --chat-bubble-incoming-border: var(--rp-highlight-low);
+  --chat-bubble-outgoing-bg: var(--rp-overlay);
+  --chat-bubble-outgoing-border: var(--rp-highlight-med);
+  --chat-avatar-bg: rgb(196 167 231 / 0.16);
+  --chat-avatar-text: var(--rp-iris);
+  --chat-timestamp: var(--rp-muted);
+  --chat-typing: var(--rp-subtle);
+
+  /* ---------------------------------------------------------------------
+     Typography
+     --------------------------------------------------------------------- */
+  --font-sans: "Inter", "Segoe UI Variable Text", "Segoe UI", system-ui,
+    -apple-system, "Noto Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Code", "Fira Code", ui-monospace,
+    SFMono-Regular, Menlo, Consolas, monospace;
+
+  --text-xs: 0.75rem;    /* 12px */
+  --text-sm: 0.8125rem;  /* 13px */
+  --text-md: 0.9375rem;  /* 15px */
+  --text-lg: 1.125rem;   /* 18px */
+  --text-xl: 1.375rem;   /* 22px */
+  --text-2xl: 1.75rem;   /* 28px */
+  --text-3xl: 2.25rem;   /* 36px */
+
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-normal: 1.55;
+  --leading-relaxed: 1.7;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  --tracking-tight: -0.01em;
+  --tracking-normal: 0;
+  --tracking-wide: 0.02em;
+  --tracking-caps: 0.08em;
+
+  /* ---------------------------------------------------------------------
+     Spacing — 4px base scale
+     --------------------------------------------------------------------- */
+  --space-0: 0;
+  --space-px: 1px;
+  --space-1: 0.25rem;   /*  4px */
+  --space-2: 0.5rem;    /*  8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.25rem;   /* 20px */
+  --space-6: 1.5rem;    /* 24px */
+  --space-7: 1.75rem;   /* 28px */
+  --space-8: 2rem;      /* 32px */
+  --space-10: 2.5rem;   /* 40px */
+  --space-12: 3rem;     /* 48px */
+  --space-16: 4rem;     /* 64px */
+  --space-20: 5rem;     /* 80px */
+  --space-24: 6rem;     /* 96px */
+
+  /* ---------------------------------------------------------------------
+     Radii
+     --------------------------------------------------------------------- */
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 20px;
+  --radius-full: 9999px;
+
+  /* ---------------------------------------------------------------------
+     Elevation
+     --------------------------------------------------------------------- */
+  --shadow-sm: 0 1px 2px rgb(10 8 20 / 0.35);
+  --shadow-md: 0 8px 24px -12px rgb(10 8 20 / 0.55);
+  --shadow-lg: 0 24px 60px -24px rgb(10 8 20 / 0.65);
+  --shadow-focus: 0 0 0 3px var(--color-focus-ring);
+
+  /* ---------------------------------------------------------------------
+     Motion
+     --------------------------------------------------------------------- */
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-fast: 120ms;
+  --duration-base: 180ms;
+  --duration-slow: 280ms;
+
+  /* ---------------------------------------------------------------------
+     Stacking
+     --------------------------------------------------------------------- */
+  --z-dropdown: 1000;
+  --z-sticky: 1100;
+  --z-overlay: 1200;
+  --z-modal: 1300;
+  --z-toast: 1400;
+}
+
+/* ==========================================================================
+   Base / reset
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-md);
+  line-height: var(--leading-normal);
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 var(--space-3);
+  color: var(--color-text);
+  font-weight: var(--weight-semibold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  text-wrap: balance;
+}
+
+h1 { font-size: var(--text-3xl); }
+h2 { font-size: var(--text-2xl); }
+h3 { font-size: var(--text-xl); }
+h4 { font-size: var(--text-lg); }
+h5 { font-size: var(--text-md); }
+h6 {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+  letter-spacing: var(--tracking-caps);
+  text-transform: uppercase;
+}
+
+p {
+  margin: 0 0 var(--space-4);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-fast) var(--ease-standard);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+  text-decoration: underline;
+}
+
+strong,
+b {
+  font-weight: var(--weight-semibold);
+  color: var(--color-text);
+}
+
+small {
+  font-size: var(--text-sm);
+  color: var(--color-text-muted);
+}
+
+hr {
+  height: 1px;
+  margin: var(--space-6) 0;
+  border: 0;
+  background: var(--color-border-subtle);
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+}
+
+code {
+  padding: 0.12em 0.36em;
+  border-radius: var(--radius-xs);
+  background: var(--color-accent-soft);
+  color: var(--rp-foam);
+}
+
+pre {
+  overflow: auto;
+  margin: 0 0 var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+  line-height: var(--leading-normal);
+}
+
+pre code {
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: inherit;
+}
+
+kbd {
+  padding: 0.1em 0.4em;
+  border: 1px solid var(--color-border);
+  border-bottom-width: 2px;
+  border-radius: var(--radius-xs);
+  background: var(--color-surface-raised);
+  color: var(--color-text-muted);
+  font-size: var(--text-xs);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+img,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--color-selection-bg);
+  color: var(--color-text);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* Scrollbars ------------------------------------------------------------- */
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--rp-highlight-high) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: var(--radius-full);
+  background: var(--rp-highlight-med);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--rp-highlight-high);
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ==========================================================================
+   Primitives
+   ========================================================================== */
+
+.rp-surface {
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+
+.rp-card {
+  padding: var(--space-5);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+.rp-divider {
+  height: 1px;
+  border: 0;
+  background: var(--color-border-subtle);
+}
+
+/* Buttons ---------------------------------------------------------------- */
+
+.rp-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-height: 36px;
+  padding: var(--space-2) var(--space-4);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-medium);
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color var(--duration-fast) var(--ease-standard),
+    border-color var(--duration-fast) var(--ease-standard),
+    color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard);
+}
+
+.rp-button:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.rp-button:disabled,
+.rp-button[aria-disabled="true"] {
+  background: var(--color-surface-active);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.rp-button--primary {
+  background: var(--color-accent);
+  color: var(--color-on-accent);
+}
+
+.rp-button--primary:hover:not(:disabled) {
+  background: var(--color-accent-hover);
+}
+
+.rp-button--primary:active:not(:disabled) {
+  background: var(--color-accent-active);
+}
+
+.rp-button--secondary {
+  border-color: var(--color-border);
+  background: var(--color-surface-raised);
+  color: var(--color-text);
+}
+
+.rp-button--secondary:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+  background: var(--color-surface-active);
+}
+
+.rp-button--ghost {
+  color: var(--color-text-muted);
+}
+
+.rp-button--ghost:hover:not(:disabled) {
+  background: var(--color-surface-hover);
+  color: var(--color-text);
+}
+
+.rp-button--ghost:active:not(:disabled) {
+  background: var(--color-surface-active);
+}
+
+.rp-button--danger {
+  background: var(--color-danger);
+  color: var(--color-on-danger);
+}
+
+.rp-button--danger:hover:not(:disabled) {
+  background: var(--color-danger-hover);
+}
+
+.rp-button--danger:active:not(:disabled) {
+  background: var(--color-danger-active);
+}
+
+/* Inputs ----------------------------------------------------------------- */
+
+.rp-input,
+.rp-textarea,
+.rp-select {
+  width: 100%;
+  min-height: 38px;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-size: var(--text-sm);
+  line-height: var(--leading-normal);
+  transition:
+    border-color var(--duration-fast) var(--ease-standard),
+    box-shadow var(--duration-fast) var(--ease-standard),
+    background-color var(--duration-fast) var(--ease-standard);
+}
+
+.rp-textarea {
+  min-height: 88px;
+  resize: vertical;
+}
+
+.rp-input::placeholder,
+.rp-textarea::placeholder {
+  color: var(--color-text-faint);
+}
+
+.rp-input:hover:not(:disabled),
+.rp-textarea:hover:not(:disabled),
+.rp-select:hover:not(:disabled) {
+  border-color: var(--color-border-strong);
+}
+
+.rp-input:focus,
+.rp-textarea:focus,
+.rp-select:focus {
+  border-color: var(--color-accent);
+  outline: none;
+  box-shadow: var(--shadow-focus);
+}
+
+.rp-input:disabled,
+.rp-textarea:disabled,
+.rp-select:disabled {
+  border-color: var(--color-border-subtle);
+  background: var(--color-surface);
+  color: var(--color-text-disabled);
+  cursor: not-allowed;
+}
+
+/* Badges ----------------------------------------------------------------- */
+
+.rp-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  padding: 0.15rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-full);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+}
+
+.rp-badge--success {
+  background: var(--color-success-soft);
+  color: var(--color-success);
+}
+
+.rp-badge--warning {
+  background: var(--color-warning-soft);
+  color: var(--color-warning);
+}
+
+.rp-badge--danger {
+  background: var(--color-danger-soft);
+  color: var(--color-danger);
+}
+
+.rp-badge--info {
+  background: var(--color-info-soft);
+  color: var(--color-info);
+}
+
+/* Chat ------------------------------------------------------------------- */
+
+.rp-chat {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--chat-main-bg);
+}
+
+.rp-chat__sidebar {
+  display: flex;
+  flex: 0 0 var(--chat-sidebar-width);
+  flex-direction: column;
+  width: var(--chat-sidebar-width);
+  border-right: 1px solid var(--color-border-subtle);
+  background: var(--chat-sidebar-bg);
+}
+
+.rp-chat__main {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+}
+
+.rp-chat__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: 56px;
+  padding: var(--space-3) var(--space-5);
+  border-bottom: 1px solid var(--color-border-subtle);
+  background: var(--chat-header-bg);
+}
+
+.rp-chat__messages {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-6);
+  overflow-y: auto;
+}
+
+.rp-chat__composer {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-top: 1px solid var(--color-border-subtle);
+  background: var(--chat-composer-bg);
+}
+
+.rp-message {
+  display: flex;
+  align-items: flex-end;
+  gap: var(--space-2);
+  max-width: min(72ch, 78%);
+}
+
+.rp-message--outgoing {
+  align-self: flex-end;
+  flex-direction: row-reverse;
+}
+
+.rp-message__avatar {
+  display: flex;
+  flex: 0 0 30px;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background: var(--chat-avatar-bg);
+  color: var(--chat-avatar-text);
+  font-size: var(--text-xs);
+  font-weight: var(--weight-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.rp-message__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.rp-message__bubble {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--chat-bubble-incoming-border);
+  border-radius: var(--chat-bubble-radius);
+  border-bottom-left-radius: var(--radius-xs);
+  background: var(--chat-bubble-incoming-bg);
+  color: var(--color-text);
+  line-height: var(--leading-normal);
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.rp-message--outgoing .rp-message__bubble {
+  border-color: var(--chat-bubble-outgoing-border);
+  border-bottom-right-radius: var(--radius-xs);
+  border-bottom-left-radius: var(--chat-bubble-radius);
+  background: var(--chat-bubble-outgoing-bg);
+}
+
+.rp-message__meta {
+  padding: 0 var(--space-1);
+  color: var(--chat-timestamp);
+  font-size: var(--text-xs);
+}
+
+.rp-message--outgoing .rp-message__meta {
+  text-align: right;
+}
+
+.rp-typing {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: var(--chat-typing);
+  font-size: var(--text-xs);
+}
