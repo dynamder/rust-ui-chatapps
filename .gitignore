@@ -1,0 +1,31 @@
+# ---- Rust / Cargo ----
+/target
+**/*.rs.bk
+
+# 注意：这里是应用型 workspace（不是库），Cargo.lock 要提交，不要忽略。
+
+# ---- 运行时数据（SQLite）----
+/data/
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+
+# ---- 本地配置 / 密钥 ----
+.env
+.env.*
+!.env.example
+
+# ---- Dioxus / 前端构建产物（以后加 ui-dioxus 会用到）----
+.dioxus/
+/dist/
+*.wasm.br
+*.wasm.gz
+
+# ---- 编辑器 / 系统 ----
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
